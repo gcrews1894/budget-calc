@@ -2,13 +2,20 @@
     width: 100vw;
     .totals {
         display: flex;
-        justify-content: space-between;
+        justify-content: center;
         align-items: center;
         padding-left: 2rem;
         padding-right: 2rem;
         p {
             font-size: 24px;
             font-family: 'Playfair Display', serif;
+            color: $txtsecondary;
+            .emphasize {
+                font-size: 28px;
+                font-family: 'Josefin Sans', sans-serif;
+                font-weight: 500;
+                color: $txtbutton;
+            }
         }
         .budgetCheck {
             display: flex;
@@ -16,8 +23,11 @@
             width: 15em;
             justify-content: center;
             align-items: center;
+            margin-right: 3em;
+            margin-left: 3em;
             font-size: 24px;
             font-family: 'Josefin Sans', sans-serif;
+            color: $txtsecondary;
             #underBudget {
                 font-size: 32px;
                 font-family: 'Josefin Sans', sans-serif;
