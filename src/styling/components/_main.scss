@@ -5,15 +5,6 @@
     background-color: $bgmain;
     background-image: url('../../assets/background.jpg');
     background-size: 100vw;
-    // .backgroundImage {
-    //     opacity: 0.3;
-    //     position: absolute;
-    //     left: 0;
-    //     top: 70;
-    //     width: 100%;
-    //     height: auto;
-    //     overflow: hidden;
-    // }
     .budgetEntry {
         .welcomeContent {
             display: flex;
@@ -25,10 +16,14 @@
             padding-top: 70px;
             height: 100vh;
             width: 100vw;
+            border: 1px solid red;
             .welcomeMessage {
                 font-size: 60px;
                 font-family: 'Playfair Display', serif;
-                color: $txtprimary
+                color: $txtsecondary;
+                position: relative;
+                top: -1em;
+                margin-bottom: 0;
             }
         }
         .budgetForm {
@@ -37,9 +32,10 @@
             justify-content: center !important;
             align-items: center !important;
             position: relative;
+            top: -2em;
             height: 10em;
             width: 30em;
-            z-index: 999;
+            margin-top: 0;
             .budgetInput {
                 box-shadow: 0px 2px 20px grey;
                 border: none;
@@ -49,6 +45,9 @@
                 padding-left: 1em;
                 font-size: 24px;
             }
+            input:focus {
+                outline: none !important;
+            }
             .budgetButton {
                 box-shadow: 0px 2px 20px grey;
                 padding: .5em 1.5em .5em 1.5em;
@@ -57,6 +56,9 @@
                 background-color: $bgaccentGreen;
                 color: $txtlightButton;
                 font-size: 24px;
+            }
+            button:focus {
+                outline: none !important;
             }
         }
     }

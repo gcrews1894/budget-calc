@@ -8,8 +8,9 @@ export default function MainBody() {
     const [budget, setBudget] = useState(0);
 
     function handleChange(value: any) {
+        let integer = parseInt(value);
         console.log(budget);
-        return setBudget(value)
+        return setBudget(integer)
     }
 
     function handleClick(e:any) {

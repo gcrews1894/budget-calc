@@ -6,6 +6,9 @@
         align-items: center;
         padding-left: 2rem;
         padding-right: 2rem;
+        position: sticky;
+        top: 70px;
+        background-color: $bgmain;
         p {
             font-size: 24px;
             font-family: 'Playfair Display', serif;
@@ -23,8 +26,8 @@
             width: 15em;
             justify-content: center;
             align-items: center;
-            margin-right: 3em;
-            margin-left: 3em;
+            margin-right: 1em;
+            margin-left: 1em;
             font-size: 24px;
             font-family: 'Josefin Sans', sans-serif;
             color: $txtsecondary;
@@ -55,6 +58,19 @@
                 margin-bottom: 0;
                 padding-bottom: 0;
             }
+        }
+    }
+    .items {
+        display: flex;
+        flex-wrap:wrap;
+        justify-content: space-around;
+        width: 100vw;
+        overflow: hidden;
+        .itemType {
+            display: flex;
+            border: 1px solid red;
+            justify-content: space-around;
+            width: 100vw;
         }
     }
 }
