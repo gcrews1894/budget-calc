@@ -1,40 +1,41 @@
 import React, { useState } from 'react';
-import Nav from '../components/nav'
-import Background from '../assets/background.jpg'
+import Nav from '../components/nav';
+import ItemsList from './itemsList';
+import Background from '../assets/background.jpg';
 
 export default function MainBody() {
     const [isVis, setIsVis] = useState(false);
     const [budget, setBudget] = useState(0);
 
-    function handleChange(e:any) {
-        e.preventDefault()
-        console.log(e.target.value)
+    function handleChange(value: any) {
+        console.log(budget);
+        return setBudget(value)
     }
 
     function handleClick(e:any) {
-        e.preventDefault()
-        console.log(e.target)
+        e.preventDefault();
+        console.log(budget);
+        return setIsVis(true);
     }
 
 
     return !isVis ? (
-        <div>
+        <div className='frontPageContent'>
             <Nav />
             <div className='budgetEntry' id="background">
-                <img className="backgroundImage" src={Background} />
                 <div className="welcomeContent">
                     <h1 className="welcomeMessage">Tell us what your budget is!</h1>
                     <form className="budgetForm">
-                        <input className="budgetInput" type="number" placeholder="what is your budget?"></input>
+                        <input className="budgetInput" type="number" placeholder="What is your budget?" onChange={(e) => handleChange(e.target.value)}/>
                         <button className="budgetButton" onClick={handleClick}>Get Started</button>
                     </form>
                 </div>
             </div>
         </div>
     ) : (
-        <div>
+        <div className="listContent">
             <Nav />
-            <h1> This is underneath! </h1>
+            <ItemsList budget={budget}/>
         </div>
     )
 }

@@ -1,40 +1,42 @@
-.budgetEntry {
+.frontPageContent{
     display: flex;
     height: 100vh;
     width: 100vw;
     background-color: $bgmain;
+    background-image: url('../../assets/background.jpg');
     background-size: 100vw;
-    position: relative;
-    z-index: -999;
-    .backgroundImage {
-        opacity: 0.3;
-        position: absolute;
-        left: 0;
-        top: 70;
-        width: 100%;
-        height: auto;
-        overflow: hidden;
-    }
-    .welcomeContent {
-        display: flex;
-        flex-wrap: wrap;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        position: relative;
-        padding-top: 70px;
-        height: 100vh;
-        width: 100vw;
-        .welcomeMessage {
-            font-size: 60px;
-            font-family: 'Playfair Display', serif;
-            color: $txtprimary
+    // .backgroundImage {
+    //     opacity: 0.3;
+    //     position: absolute;
+    //     left: 0;
+    //     top: 70;
+    //     width: 100%;
+    //     height: auto;
+    //     overflow: hidden;
+    // }
+    .budgetEntry {
+        .welcomeContent {
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            padding-top: 70px;
+            height: 100vh;
+            width: 100vw;
+            .welcomeMessage {
+                font-size: 60px;
+                font-family: 'Playfair Display', serif;
+                color: $txtprimary
+            }
         }
         .budgetForm {
             display: flex;
             flex-wrap: wrap;
             justify-content: center !important;
             align-items: center !important;
+            position: relative;
             height: 10em;
             width: 30em;
             z-index: 999;
@@ -58,4 +60,12 @@
             }
         }
     }
+}
+
+.listContent {
+    display: flex;
+    background-color: $bgmain;
+    padding-top: 70px;
+    height: 100vh;
+    width: 100vw;
 }
