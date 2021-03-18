@@ -1,0 +1,42 @@
+#inner{
+    height: 100%;
+    display: flex !important;
+    flex-wrap: wrap !important;
+    justify-content: center;
+    .itemsDiv{
+        margin-top: 0 !important;
+        display: block;
+        h1 {
+            font-size: 24px;
+            text-align: center;
+        }
+        div {
+            border: none;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            width:100%;
+            background-color: $bgcardHeader;
+            border-radius:.5em;
+            box-shadow: 0px 2px 10px hsl(0, 0%, 60%);
+            #name{
+                width: 100%;
+                text-align: center;
+                margin-bottom: 0;
+                font-family: 'Helvetica', sans-serif;
+                color: $txtprimary;
+            }
+            #price {
+                width: 10em;
+                margin-top:.5em;
+                margin-left: 1em;
+                margin-right: 1em;
+                text-align: center;
+                font-family: 'Helvetica', sans-serif;
+                font-weight: 300;
+                color: $txtprimary;
+            }
+        }
+    }
+}
+

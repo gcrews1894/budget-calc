@@ -1,8 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import firebase from '../firebase'
-import ItemTile from '../components/itemTile'
+import firebase from '../firebase';
+import ItemTile from '../components/itemTile';
+import ShoppingCart from '../components/shoppingCart';
+
+// wouldn't work with ES6 import
+const { v4: uuidv4 } = require('uuid');
+const id = uuidv4()
 
 export default function ItemsList(props:any) {
+    let budgetProp = props.budget;
+    const [budget, setBudget] = useState(budgetProp)
     const [items, setItems] = useState<any>([]);
     const [lowerTotal, setLowerTotal] = useState(0)
     const [upperTotal, setUpperTotal] = useState(0)
@@ -29,7 +36,8 @@ export default function ItemsList(props:any) {
         let highPrice = parseInt(e.target.querySelector("param[name='highPrice']").value)
         let id = e.target.id
         let itemType = e.target.querySelector(".itemName").id
-        let stateObj = [id, lowPrice, highPrice, itemType]
+        let name = e.target.title
+        let stateObj = [id, lowPrice, highPrice, itemType, name]
         if (itemType === 'WATER_FEATURES') {
             setActiveWater(stateObj)
         }
@@ -49,6 +57,7 @@ export default function ItemsList(props:any) {
             setActiveFence(stateObj)
         }
         setTotals(activeValues)
+        console.log(activeValues)
     }
 
     function setTotals(arr: []) {
@@ -69,8 +78,6 @@ export default function ItemsList(props:any) {
         setLowerTotal(lowTotal)
         setUpperTotal(highTotal)
     }
-
-    let budget = props.budget;
     
     let under = <h1 id="underBudget">UNDER BUDGET</h1>
     let over = <h1 id="overBudget">OVER BUDGET</h1>
@@ -96,7 +103,6 @@ export default function ItemsList(props:any) {
 
     useEffect(() => {
         setTotals(activeValues)
-        console.log(activeValues)
     }, [activeValues])
 
     // sorts items by type
@@ -148,22 +154,93 @@ export default function ItemsList(props:any) {
         }
         return tileArr;
     }
-    
     tiles = parseItems(items);
+
+    interface itemCollection {
+        id: any,
+        WATER_FEATURE:{},
+        STRUCTURE:{},
+        LIGHTING:{},
+        GROUND_COVER:{},
+        DECK_MATERIAL:{},
+        FENCING_AND_PRIVACY:{},
+        lowerTotal: number,
+        upperTotal: number,
+        budget: number
+    }
+
+    let add = firebase.firestore().collection("gavinCrewsBudgetSubmit")
+    function addCart(newCart: itemCollection) {
+        add
+            .doc(newCart.id)
+            .set(newCart)
+            .catch((err) => {
+                console.log(err)
+            })
+        console.log('submitted')
+    }
+    function updateCart(updateCart: itemCollection) {
+        add
+            .doc(updateCart.id)
+            .set(updateCart)
+            .catch((err) => {
+                console.log(err)
+            })
+        console.log('updated')
+    }
+    function outerHandleClick() {
+        let hasBeenCalled = false;
+        function innerHandleClick() {
+            let submitObj:any = {}
+            submitObj.id = id
+            for (let i = 0; i < activeValues.length; i++) {
+                if (activeValues[i].length > 0) {
+                    let typeObj:any = {
+                        type: activeValues[i][3],
+                        name: activeValues[i][4],
+                        lowPrice: activeValues[i][1],
+                        highPrice: activeValues[i][2]
+                    }
+                    // console.log(typeObj)
+                    submitObj[typeObj.type] = typeObj;
+                }
+            }
+            submitObj.lowerTotal = lowerTotal
+            submitObj.upperTotal = upperTotal
+            submitObj.budget = budget
+            console.log(submitObj)
+            if (!hasBeenCalled) {
+                addCart(submitObj)
+                hasBeenCalled = true
+            } else {
+                console.log('else entered')
+                updateCart(submitObj)
+            }
+        }
+        return innerHandleClick;
+    }
+    let handleSubmit = outerHandleClick()
 
     return (
         <div className="itemsList">
             <div className="totals">
-                <p>Your budget is: <span className="emphasize">${budget}</span></p>
+                <div className="personalBudget">
+                    <p>Your budget is: <span className="emphasize">${budget}</span></p>
+                </div>
                 <div className='centerTotals'>
-                    <p className="budgetCheck">YOU ARE CURRENTLY: {budget > lowerTotal && budget < upperTotal ? inBudget : budget > upperTotal ? under : over} </p>
+                    <button className="resetButton submit" onClick={handleSubmit}>SUBMIT</button>
+                    <p className="budgetCheck">YOU ARE CURRENTLY: {budget >= lowerTotal && budget <= upperTotal ? inBudget : budget > upperTotal ? under : over} </p>
                     <button className="resetButton" onClick={clearActives}>RESET</button>
                 </div>
                 <div className="budgetRange">
                     <p>Current range is: </p><span className='emphasize'>${lowerTotal} to ${upperTotal}</span>
                 </div>
             </div>
+            <div className="shoppingCart">
+                <ShoppingCart arr={activeValues}/>
+            </div>
             <div className="items">
+                <h1 className="instructions">Please Select Up to One Item Per Category</h1>
                 <div className="itemType">
                     <h1 className="typeTitle">Water Feature</h1>
                         {tiles[0]}

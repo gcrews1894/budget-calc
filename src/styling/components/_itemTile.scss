@@ -5,8 +5,8 @@
     flex-wrap: wrap;
     justify-content: center;
     width: 16em;
-    background-color: $bgcardMain;
-    box-shadow: 0px 2px 12px $txtaccent;
+    background-color: white;
+    box-shadow: 0px 2px 10px hsl(0, 0%, 60%);
     margin-left: 1em;
     margin-right: 1em;
     h3 {
@@ -21,9 +21,11 @@
         font-size: 24px;
         margin-bottom: 0;
         width: 100%;
+        color: $txtsecondary;
     }
     .itemPrice {
         width: 16em;
+        color: $txttertiary;
     }
     .itemButton:enabled {
         border: 3px solid $bgaccentGreen;
