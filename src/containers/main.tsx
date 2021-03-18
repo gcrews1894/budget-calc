@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import Nav from '../components/nav';
 import ItemsList from './itemsList';
-import Background from '../assets/background.jpg';
 
 export default function MainBody() {
     const [isVis, setIsVis] = useState(false);
