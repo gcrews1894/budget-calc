@@ -18,7 +18,7 @@ export default function MainBody() {
         return setIsVis(true);
     }
 
-
+    // shows landing page until "Get Started" is clicked
     return !isVis ? (
         <div className='frontPageContent'>
             <Nav />

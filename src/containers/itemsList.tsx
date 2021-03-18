@@ -22,6 +22,10 @@ export default function ItemsList(props:any) {
     const [activeFence, setActiveFence] = useState<any>([])
     const activeValues:any = [activeWater, activeStructure, activeLighting, activeGround, activeDeck, activeFence]
 
+    let sortedItems: any[] = []
+    let tiles: any
+
+    // resets all selected items and empties cart
     function clearActives() {
         setActiveWater([])
         setActiveStructure([])
@@ -31,6 +35,8 @@ export default function ItemsList(props:any) {
         setActiveFence([])
     }
 
+
+    // handles item card clicks to add item to activeItem state
     function handleClick(e:any) {
         let lowPrice = parseInt(e.target.querySelector("param[name='lowPrice']").value)
         let highPrice = parseInt(e.target.querySelector("param[name='highPrice']").value)
@@ -57,9 +63,10 @@ export default function ItemsList(props:any) {
             setActiveFence(stateObj)
         }
         setTotals(activeValues)
-        console.log(activeValues)
+        // console.log(activeValues)
     }
 
+    // grabs the low and high price values from all active items and calculates low-total and high-total
     function setTotals(arr: []) {
         let lows:any[] = []
         let highs:any[] = []
@@ -79,12 +86,11 @@ export default function ItemsList(props:any) {
         setUpperTotal(highTotal)
     }
     
+    // conditional tags to display budget status
     let under = <h1 id="underBudget">UNDER BUDGET</h1>
     let over = <h1 id="overBudget">OVER BUDGET</h1>
     let inBudget = <h1 id="inBudget">IN BUDGET</h1>
 
-    let sortedItems: any[] = []
-    let tiles: any
 
     // queries to firestore for 'items' collect and processes data returned
     let ref = firebase.firestore().collection("items")
@@ -101,6 +107,7 @@ export default function ItemsList(props:any) {
         getItems();
     }, []);
 
+    // any time the value of activeValues changes, re-invokes setTotals function
     useEffect(() => {
         setTotals(activeValues)
     }, [activeValues])
@@ -142,6 +149,7 @@ export default function ItemsList(props:any) {
         return buildItems(sortedItems)
     }
     
+    // builds itemTile components and places them in a 2D array
     function buildItems(arr: any[]) {
         let tileArr: any[] = [];
         for (let i = 0; i < arr.length; i++){
@@ -156,8 +164,9 @@ export default function ItemsList(props:any) {
     }
     tiles = parseItems(items);
 
+    // interface for data submission
     interface itemCollection {
-        id: any,
+        id: string,
         WATER_FEATURE:{},
         STRUCTURE:{},
         LIGHTING:{},
@@ -169,6 +178,7 @@ export default function ItemsList(props:any) {
         budget: number
     }
 
+    // functions to add/update documents in the "gavinCrewsBudgetSubmit" collection
     let add = firebase.firestore().collection("gavinCrewsBudgetSubmit")
     function addCart(newCart: itemCollection) {
         add
@@ -188,6 +198,7 @@ export default function ItemsList(props:any) {
             })
         console.log('updated')
     }
+    // Helper function for handle submit, utilizes closure to create an object for DB and call the ADD method if this is the first time the button has been clicked, or the UPDATE method if it has already been called
     function outerHandleClick() {
         let hasBeenCalled = false;
         function innerHandleClick() {

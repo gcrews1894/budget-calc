@@ -19,6 +19,7 @@ const useStyles = makeStyles({
     },
   });
 
+// Material UI draw component, modified to be users Shopping Cart
 export default function Navbar(props) {
     const classes = useStyles();
     const [state, setState] = React.useState({

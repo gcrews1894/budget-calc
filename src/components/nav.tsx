@@ -1,5 +1,6 @@
 import React from 'react';
 
+// Navbar mimics navbar from Yardzen's website
 export default function Navbar() {
 
     return (
