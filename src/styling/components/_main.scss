@@ -1,72 +1,71 @@
-.frontPageContent{
-    display: flex;
-    height: 100vh;
-    width: 100vw;
-    background-color: $bgmain;
-    background-image: url('../../assets/background.jpg');
-    background-size: 100vw;
-    .budgetEntry {
-        .welcomeContent {
-            display: flex;
-            flex-wrap: wrap;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-            padding-top: 70px;
-            height: 100vh;
-            width: 100vw;
-            .welcomeMessage {
-                font-size: 60px;
-                font-family: 'Playfair Display', serif;
-                color: $txtsecondary;
-                position: relative;
-                top: -1em;
-                margin-bottom: 0;
-            }
-        }
-        .budgetForm {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center !important;
-            align-items: center !important;
-            position: relative;
-            top: -2em;
-            height: 10em;
-            width: 30em;
-            margin-top: 0;
-            .budgetInput {
-                box-shadow: 0px 2px 20px grey;
-                border: none;
-                border-radius: 5em;
-                line-height: 2em;
-                width: 35em;
-                padding-left: 1em;
-                font-size: 24px;
-            }
-            input:focus {
-                outline: none !important;
-            }
-            .budgetButton {
-                box-shadow: 0px 2px 20px grey;
-                padding: .5em 1.5em .5em 1.5em;
-                border: none;
-                border-radius: 5em;
-                background-color: $bgaccentGreen;
-                color: $txtlightButton;
-                font-size: 24px;
-            }
-            button:focus {
-                outline: none !important;
-            }
-        }
-    }
+.frontPageContent {
+	display: flex;
+	height: 100vh;
+	width: 100vw;
+	background-color: $bgmain;
+	background-image: url("../../assets/background.jpg");
+	background-size: 100vw;
+	.budgetEntry {
+		.welcomeContent {
+			display: flex;
+			flex-wrap: wrap;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			position: relative;
+			padding-top: 70px;
+			height: 100vh;
+			width: 100vw;
+			.welcomeMessage {
+				font-size: 60px;
+				font-family: "Playfair Display", serif;
+				color: $txtsecondary;
+				position: relative;
+				top: -1em;
+				margin-bottom: 0;
+			}
+		}
+		.budgetForm {
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: center !important;
+			align-items: center !important;
+			position: relative;
+			top: -2em;
+			height: 10em;
+			width: 30em;
+			margin-top: 0;
+			.budgetInput {
+				box-shadow: 0px 2px 20px grey;
+				border: none;
+				border-radius: 5em;
+				line-height: 2em;
+				width: 35em;
+				padding-left: 1em;
+				font-size: 24px;
+			}
+			input:focus {
+				outline: none !important;
+			}
+			.budgetButton {
+				box-shadow: 0px 2px 20px grey;
+				padding: 0.5em 1.5em 0.5em 1.5em;
+				border: none;
+				border-radius: 5em;
+				background-color: $bgaccentGreen;
+				color: $txtlightButton;
+				font-size: 24px;
+			}
+			button:focus {
+				outline: none !important;
+			}
+		}
+	}
 }
 
 .listContent {
-    display: flex;
-    background-color: $bgmain;
-    padding-top: 70px;
-    height: 100vh;
-    width: 100vw;
+	display: flex;
+	background-color: $bgmain;
+	padding-top: 70px;
+	width: 100vw;
 }

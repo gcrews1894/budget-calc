@@ -162,6 +162,8 @@ export default function ItemsList(props:any) {
         }
         return tileArr;
     }
+
+    // could utilize useMemo so that the page doesn't rerender every time an item is clicked
     tiles = parseItems(items);
 
     // interface for data submission

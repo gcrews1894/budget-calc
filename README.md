@@ -4,4 +4,9 @@ This challenge was very fun. I utilized create-react-app for the sake of time, b
 
 I did my best to utilize typeScript, but I was encountering some errors here. This is one of the biggest areas I would refactor if given more time.
 
-I decided to come as close to the Yardzen aesthetic as possible, so I examined the website and grabbed as many of the colors and fonts used as I could.
+I decided to come as close to the company's aesthetic as possible, so I examined the website and grabbed as many of the colors and fonts used as I could.
+
+To run:
+
+-- npm install
+-- npm start
